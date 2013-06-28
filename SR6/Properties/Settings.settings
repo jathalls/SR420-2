@@ -1,0 +1,54 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SR6.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="File_Path" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Bat Recordings\</Value>
+    </Setting>
+    <Setting Name="File_Name_Template" Type="System.String" Scope="User">
+      <Value Profile="(Default)">BatTest</Value>
+    </Setting>
+    <Setting Name="Initial_Index" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="AppendDateTime" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="AppendIndex" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="Brightness" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">65000</Value>
+    </Setting>
+    <Setting Name="Contrast" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="GPSPort" Type="System.String" Scope="User">
+      <Value Profile="(Default)">COM3</Value>
+    </Setting>
+    <Setting Name="GPSBaud" Type="System.String" Scope="User">
+      <Value Profile="(Default)">4800</Value>
+    </Setting>
+    <Setting Name="FourierWindow" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Hanning</Value>
+    </Setting>
+    <Setting Name="SampleAdvance" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="FourierOrder" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="BufferSize" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2048</Value>
+    </Setting>
+    <Setting Name="WordSize" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">16</Value>
+    </Setting>
+    <Setting Name="SampleRate" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">192000</Value>
+    </Setting>
+    <Setting Name="LocalOscillator" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Tone</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

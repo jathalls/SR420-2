@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="richTextBox2.Text" xml:space="preserve">
+    <value>General
+	File Saving Path - Location for storing recordings and log files (restart needed for
+		new log file at he new location)
+	File Name Template - A prefix for file names, full file name will include the prefix
+		the date and the time pls an optional index as well as the extension.
+	Initial Index Value - starting value for file index numbers if used
+	Append Date and Time to File Name - if checked the file name will include the
+		date and tme when the recording starts
+	Append Index Value to File Name - if checked the file name includes an index number.
+		An index may be included if the box is unchecked but another file of
+		the same name already exists
+GPS
+	Com Port - select the Com port used by the external GPS device
+	Baud Rate - baud rate for the GPS port, usually 4800
+	Enable GPS Logging - if checked and GPS is present the GPS co-ordinates are recorded
+		in the log file at the start and end of each recording.  Also displaed on screen
+		but only updated at the start or end of a recording.  If the GPS cnnot be
+		started the box will untick itself.  The program will attempt to connect
+		for one minute before giving up.
+Sonagram
+	Max - The maximum value on the brightness scale of the sonagram.  Increases or
+		decreases 10 fold by use of &lt; or &gt;
+	Min - The minimum value for the brightness scale of the sonagram
+	Colour - if checked the sonagram is displayed in colour, otherwise in grey scale
+	Fourier Window - Select the prefferred type of fourier window function from the list,
+		Hanning, Hamming, FlatTop, CosSum, Blackman, Bartlett, Kaiser, Rect
+	Sample Advance - The number of samples the window advances for each spectrum.
+		if zero the advance is by one full window period which gives the fastest
+		response.
+	Fourier Order - Determines the size of the sample used to calculate the spectrum, and
+		incidentally changes the base time scale
+Audio Format
+	Buffer Size - The size of the buffers used in the processing chain.  Affects the latency
+		and performance of the program
+	Sample Rate - the digitization rate
+	Word size - the size of the sample values in bits</value>
+  </data>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>SR7-640
+Sound recorder program with real time spectrogram and bat detector
+by Justin A T Halls
+2012
+
+This program will record through an internal or external microphone to one or more files.
+While reording the detected sounds will be displayed as a real time spectrogram.
+The program was designed for recording bats using a sound card capable of
+digitizing at 192ksps in 24bits, and the default settings are appropriate for ths.
+The sample rate and size are set in the Sound section of the control panel.
+The 'devices' button allows selection of the input device.
+The program also functions as a tuned bat detector, and the tuned frequency is displayed
+on the spectrogram and in figures above the spectrogram.  
+The bat detector output normaly goes to the speakers (which can cause reverberation)
+or to external headphones.  The 'Speakers' button allows selection of the output device.
+The preferences panel allows selection of the destination of the file recorded to, and
+the format of the file name.  Also sonagram and GPS parameters may be selected.
+For GPS an external GPS device with drivers must be installed and must be visibles as
+a COM serial port, using NMEA protocols.  If GPS is enabled the GPS coordinates
+will be recorded in the log file.
+A log file is created in the prefferred folder for each session.  If the log file is to be in a
+different folder the program must be restarted after changing the folder in preferences.
+The log file records the date and time when the program is started and stopped and the
+start and stop time for each file recorded.
+Files are in .WAV format at 192ksps 24bit.  Not all software can read these files.  
+If necessary open the file in Audacity and then resave it using SaveAs which will correct
+the format so that it can be read by other software.
+For even more restrictive software which cannot handle 24 bit files the file my be resampled
+in AVISOFT SASLab Lite.
+
+This program is based upon and makes extensive use of the free Mitov Audio and Signal
+Libraries.</value>
+  </data>
+</root>
