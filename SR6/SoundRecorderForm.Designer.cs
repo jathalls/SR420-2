@@ -204,6 +204,9 @@
             this.FileStatusLabel = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblDeviceName = new System.Windows.Forms.Label();
+            this.lblFilterState = new System.Windows.Forms.Label();
+            this.lblBDState = new System.Windows.Forms.Label();
             this.GPSPositionLabel = new System.Windows.Forms.Label();
             this.waveLogger1 = new Mitov.AudioLab.WaveLogger(this.components);
             this.realToAudio1 = new Mitov.AudioLab.RealToAudio(this.components);
@@ -213,9 +216,6 @@
             this.audioOut1 = new Mitov.AudioLab.AudioOut(this.components);
             this.AudioSource = new Mitov.AudioLab.AudioIn(this.components);
             this.fir1 = new Mitov.SignalLab.Fir(this.components);
-            this.lblBDState = new System.Windows.Forms.Label();
-            this.lblFilterState = new System.Windows.Forms.Label();
-            this.lblDeviceName = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.waterfall1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -242,7 +242,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 97.87234F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2.12766F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(984, 432);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1128, 483);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // waterfall1
@@ -382,7 +382,7 @@
             this.waterfall1.Location = new System.Drawing.Point(3, 3);
             this.waterfall1.Name = "waterfall1";
             this.waterfall1.RefreshInterval = ((uint)(100u));
-            this.waterfall1.Size = new System.Drawing.Size(978, 416);
+            this.waterfall1.Size = new System.Drawing.Size(1122, 466);
             this.waterfall1.TabIndex = 0;
             this.waterfall1.Text = "waterfall1";
             displayViewBackground3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -582,7 +582,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(984, 120);
+            this.panel1.Size = new System.Drawing.Size(1128, 120);
             this.panel1.TabIndex = 1;
             // 
             // toolStrip1
@@ -597,7 +597,7 @@
             this.BatDetectorTSButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(542, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(686, 25);
             this.toolStrip1.TabIndex = 10;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -707,10 +707,37 @@
             this.panel2.Controls.Add(this.lblBDState);
             this.panel2.Controls.Add(this.GPSPositionLabel);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(542, 0);
+            this.panel2.Location = new System.Drawing.Point(686, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(442, 120);
             this.panel2.TabIndex = 0;
+            // 
+            // lblDeviceName
+            // 
+            this.lblDeviceName.AutoSize = true;
+            this.lblDeviceName.Location = new System.Drawing.Point(30, 55);
+            this.lblDeviceName.Name = "lblDeviceName";
+            this.lblDeviceName.Size = new System.Drawing.Size(35, 13);
+            this.lblDeviceName.TabIndex = 3;
+            this.lblDeviceName.Text = "label3";
+            // 
+            // lblFilterState
+            // 
+            this.lblFilterState.AutoSize = true;
+            this.lblFilterState.Location = new System.Drawing.Point(30, 38);
+            this.lblFilterState.Name = "lblFilterState";
+            this.lblFilterState.Size = new System.Drawing.Size(35, 13);
+            this.lblFilterState.TabIndex = 2;
+            this.lblFilterState.Text = "label2";
+            // 
+            // lblBDState
+            // 
+            this.lblBDState.AutoSize = true;
+            this.lblBDState.Location = new System.Drawing.Point(30, 21);
+            this.lblBDState.Name = "lblBDState";
+            this.lblBDState.Size = new System.Drawing.Size(35, 13);
+            this.lblBDState.TabIndex = 1;
+            this.lblBDState.Text = "label1";
             // 
             // GPSPositionLabel
             // 
@@ -743,7 +770,6 @@
             audioFormat1.Bits = ((uint)(16u));
             audioFormat1.BufferSize = ((uint)(1024u));
             audioFormat1.Channels = ((uint)(2u));
-            audioFormat1.InternalData = ((Vcl.VclBinaryData)(resources.GetObject("audioFormat1.InternalData")));
             audioFormat1.SampleRate = ((uint)(11025u));
             this.realToAudio1.AudioFormat = audioFormat1;
             pinList1.ConnectionData = ((OpenWire.PinConnections)(resources.GetObject("pinList1.ConnectionData")));
@@ -812,7 +838,6 @@
             audioFormat2.Bits = ((uint)(16u));
             audioFormat2.BufferSize = ((uint)(2048u));
             audioFormat2.Channels = ((uint)(1u));
-            audioFormat2.InternalData = ((Vcl.VclBinaryData)(resources.GetObject("audioFormat2.InternalData")));
             audioFormat2.SampleRate = ((uint)(192000u));
             this.AudioSource.AudioFormat = audioFormat2;
             audioCaptureDevice1.DeviceName = "Line In (High Definition Audio ";
@@ -839,38 +864,11 @@
             threading3.Queue = threadingQueue3;
             this.fir1.Threading = threading3;
             // 
-            // lblBDState
-            // 
-            this.lblBDState.AutoSize = true;
-            this.lblBDState.Location = new System.Drawing.Point(30, 21);
-            this.lblBDState.Name = "lblBDState";
-            this.lblBDState.Size = new System.Drawing.Size(35, 13);
-            this.lblBDState.TabIndex = 1;
-            this.lblBDState.Text = "label1";
-            // 
-            // lblFilterState
-            // 
-            this.lblFilterState.AutoSize = true;
-            this.lblFilterState.Location = new System.Drawing.Point(30, 38);
-            this.lblFilterState.Name = "lblFilterState";
-            this.lblFilterState.Size = new System.Drawing.Size(35, 13);
-            this.lblFilterState.TabIndex = 2;
-            this.lblFilterState.Text = "label2";
-            // 
-            // lblDeviceName
-            // 
-            this.lblDeviceName.AutoSize = true;
-            this.lblDeviceName.Location = new System.Drawing.Point(30, 55);
-            this.lblDeviceName.Name = "lblDeviceName";
-            this.lblDeviceName.Size = new System.Drawing.Size(35, 13);
-            this.lblDeviceName.TabIndex = 3;
-            this.lblDeviceName.Text = "label3";
-            // 
             // SoundRecorderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 552);
+            this.ClientSize = new System.Drawing.Size(1128, 603);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.panel1);
             this.KeyPreview = true;
