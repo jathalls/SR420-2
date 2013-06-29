@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SR7_420_2</RootNamespace>
     <AssemblyName>SR7-420-2</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -43,6 +43,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -53,6 +54,7 @@
     </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>E9E14E3F2207143DEC15F57C4BEA8FD614C0153C</ManifestCertificateThumbprint>
@@ -70,22 +72,31 @@
     <Reference Include="Mitov.AudioLab, Version=5.0.3.1, Culture=neutral, PublicKeyToken=e5f079ac440fbda0, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Program Files (x86)\LabPacks\DotNET\Bin\4.0\Mitov.AudioLab.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Mitov.AudioLab.Design, Version=5.0.3.1, Culture=neutral, PublicKeyToken=7213832cfa01014e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Program Files (x86)\LabPacks\DotNET\Bin\4.0\Mitov.AudioLab.Design.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Mitov.AudioLabBasic, Version=5.0.3.1, Culture=neutral, PublicKeyToken=d6082b20afed4658, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Program Files (x86)\LabPacks\DotNET\Bin\4.0\Mitov.AudioLabBasic.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Mitov.AudioLabBasic.Design, Version=5.0.3.1, Culture=neutral, PublicKeyToken=aa5ab84bbe6efa61, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Program Files (x86)\LabPacks\DotNET\Bin\4.0\Mitov.AudioLabBasic.Design.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Mitov.AudioLabEssential, Version=5.0.3.1, Culture=neutral, PublicKeyToken=581f0b5694b30d4a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Program Files (x86)\LabPacks\DotNET\Bin\4.0\Mitov.AudioLabEssential.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Mitov.AudioLabEssential.Design, Version=5.0.3.1, Culture=neutral, PublicKeyToken=221910775bbe4125, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -94,6 +105,7 @@
     <Reference Include="Mitov.InstrumentLab, Version=5.0.3.1, Culture=neutral, PublicKeyToken=d83fb7bf88b23f0b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Program Files (x86)\LabPacks\DotNET\Bin\4.0\Mitov.InstrumentLab.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Mitov.InstrumentLab.Design, Version=5.0.3.1, Culture=neutral, PublicKeyToken=33a4481993567791, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -102,10 +114,12 @@
     <Reference Include="Mitov.OpenWireEditor, Version=5.0.3.1, Culture=neutral, PublicKeyToken=ca3848e8271c0c4b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Program Files (x86)\LabPacks\DotNET\Bin\4.0\Mitov.OpenWireEditor.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Mitov.PlotLab, Version=5.0.3.1, Culture=neutral, PublicKeyToken=dbd38d31b0aeb8c3, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Program Files (x86)\LabPacks\DotNET\Bin\4.0\Mitov.PlotLab.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Mitov.PlotLab.Design, Version=5.0.3.1, Culture=neutral, PublicKeyToken=603ef42bc46fb789, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -114,6 +128,7 @@
     <Reference Include="Mitov.PlotLabBasic, Version=5.0.3.1, Culture=neutral, PublicKeyToken=1bb0b8a97236ac2e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Program Files (x86)\LabPacks\DotNET\Bin\4.0\Mitov.PlotLabBasic.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Mitov.PlotLabBasic.Design, Version=5.0.3.1, Culture=neutral, PublicKeyToken=21cee00db9a35e0d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -122,6 +137,7 @@
     <Reference Include="Mitov.SignalLab, Version=5.0.3.1, Culture=neutral, PublicKeyToken=0f7dd317c9b1aa3e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Program Files (x86)\LabPacks\DotNET\Bin\4.0\Mitov.SignalLab.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Mitov.SignalLab.Design, Version=5.0.3.1, Culture=neutral, PublicKeyToken=a6b2161c42998a18, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -130,6 +146,7 @@
     <Reference Include="Mitov.SignalLabAdditional, Version=5.0.3.1, Culture=neutral, PublicKeyToken=11c13558307fd03f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Program Files (x86)\LabPacks\DotNET\Bin\4.0\Mitov.SignalLabAdditional.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Mitov.SignalLabAdditional.Design, Version=5.0.3.1, Culture=neutral, PublicKeyToken=f4d8f639294fb855, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -138,6 +155,7 @@
     <Reference Include="Mitov.SignalLabBasic, Version=5.0.3.1, Culture=neutral, PublicKeyToken=0b44e28582c522cf, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Program Files (x86)\LabPacks\DotNET\Bin\4.0\Mitov.SignalLabBasic.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Mitov.SignalLabBasic.Design, Version=5.0.3.1, Culture=neutral, PublicKeyToken=424d84261f680115, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
