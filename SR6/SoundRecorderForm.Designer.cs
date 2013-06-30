@@ -786,7 +786,7 @@
             // 
             // signalGen1
             // 
-            this.signalGen1.Amplitude = 0.01D;
+            this.signalGen1.Amplitude = 0.1D;
             this.signalGen1.Asymmetry = 0D;
             sinkPin5.ConnectionData = ((OpenWire.PinConnections)(resources.GetObject("sinkPin5.ConnectionData")));
             this.signalGen1.ClockPin = sinkPin5;
