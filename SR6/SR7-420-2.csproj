@@ -172,7 +172,7 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="tmagpsapi">
-      <HintPath>..\..\..\..\..\Downloads\Programming\Sound\NetGPS-API\Application-Compiled\tmagpsapi.dll</HintPath>
+      <HintPath>..\..\..\..\Downloads\GPS\tmagpsapi.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
