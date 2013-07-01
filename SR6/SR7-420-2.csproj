@@ -172,7 +172,7 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="tmagpsapi">
-      <HintPath>..\..\..\..\Downloads\GPS\tmagpsapi.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\ProgramData\tmagpsapi.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
