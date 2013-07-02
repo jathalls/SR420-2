@@ -96,59 +96,59 @@ namespace SR7_420_2
         void SoundRecorderForm_Load(object sender, EventArgs e)
         {
 
-
-            SetCursor();
-            waterfall1.Levels.Axis.Max = Properties.Settings.Default.Brightness;
-            waterfall1.Levels.Axis.Min = Properties.Settings.Default.Contrast;
-
-            fourier1.SamplingWindowStep = (uint)Properties.Settings.Default.SampleAdvance;
-            switch ((string)Properties.Settings.Default.FourierWindow)
+            try
             {
-                case "Blackman":
-                    fourier1.WindowType = Mitov.SignalLab.ExtendedWindowType.Blackman; break;
-                case "Bartlett":
-                    fourier1.WindowType = Mitov.SignalLab.ExtendedWindowType.Bartlett; break;
-                case "Hamming":
-                    fourier1.WindowType = Mitov.SignalLab.ExtendedWindowType.Hamming; break;
-                case "Hanning":
-                    fourier1.WindowType = Mitov.SignalLab.ExtendedWindowType.Hanning; break;
-                case "Kaiser":
-                    fourier1.WindowType = Mitov.SignalLab.ExtendedWindowType.Kaiser; break;
-                case "Rect":
-                    fourier1.WindowType = Mitov.SignalLab.ExtendedWindowType.Rect; break;
-                case "CosSum":
-                    fourier1.WindowType = Mitov.SignalLab.ExtendedWindowType.CosSum; break;
-                case "FlatTop":
-                    fourier1.WindowType = Mitov.SignalLab.ExtendedWindowType.FlatTop; break;
-                default:
-                    fourier1.WindowType = Mitov.SignalLab.ExtendedWindowType.Hamming; break;
+                SetCursor();
+                waterfall1.Levels.Axis.Max = Properties.Settings.Default.Brightness;
+                waterfall1.Levels.Axis.Min = Properties.Settings.Default.Contrast;
 
+                fourier1.SamplingWindowStep = (uint)Properties.Settings.Default.SampleAdvance;
+                switch ((string)Properties.Settings.Default.FourierWindow)
+                {
+                    case "Blackman":
+                        fourier1.WindowType = Mitov.SignalLab.ExtendedWindowType.Blackman; break;
+                    case "Bartlett":
+                        fourier1.WindowType = Mitov.SignalLab.ExtendedWindowType.Bartlett; break;
+                    case "Hamming":
+                        fourier1.WindowType = Mitov.SignalLab.ExtendedWindowType.Hamming; break;
+                    case "Hanning":
+                        fourier1.WindowType = Mitov.SignalLab.ExtendedWindowType.Hanning; break;
+                    case "Kaiser":
+                        fourier1.WindowType = Mitov.SignalLab.ExtendedWindowType.Kaiser; break;
+                    case "Rect":
+                        fourier1.WindowType = Mitov.SignalLab.ExtendedWindowType.Rect; break;
+                    case "CosSum":
+                        fourier1.WindowType = Mitov.SignalLab.ExtendedWindowType.CosSum; break;
+                    case "FlatTop":
+                        fourier1.WindowType = Mitov.SignalLab.ExtendedWindowType.FlatTop; break;
+                    default:
+                        fourier1.WindowType = Mitov.SignalLab.ExtendedWindowType.Hamming; break;
+
+                }
+
+                SetSignalGeneratorSignalType(Properties.Settings.Default.LocalOscillator.ToString());
+
+                
+                if (BatDetectorTSButton.Text == "Force Bat Detector")
+                {
+                    BatDetectorTSButton_Click(this, new EventArgs());
+                }
+                SetBatDetectorLabel();
+                SetFilterLabel();
+                SetDeviceLabel();
+
+                Assembly assembly = Assembly.GetExecutingAssembly();
+
+                AssemblyName assemblyName = assembly.GetName();
+                this.Text = assemblyName.FullName;
+                //this.Text = "SR7-420-2 " + versionText;// assemblyName.Version;
+                CreateLogFile();
             }
-
-            SetSignalGeneratorSignalType(Properties.Settings.Default.LocalOscillator.ToString());
-
-            String versionText = "";
-            if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
+            catch (Exception ex)
             {
 
-                System.Deployment.Application.ApplicationDeployment ad = System.Deployment.Application.ApplicationDeployment.CurrentDeployment;
-
-                versionText = ad.CurrentVersion.ToString();
-
+                File.AppendAllText(filePath + fileTemplate + "ERROR.txt",DateTime.Now.ToString()+ex.Message + ex.StackTrace);
             }
-            if (BatDetectorTSButton.Text == "Force Bat Detector")
-            {
-                BatDetectorTSButton_Click(this, new EventArgs());
-            }
-            SetBatDetectorLabel();
-            SetFilterLabel();
-            SetDeviceLabel();
-            
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            
-            AssemblyName assemblyName = assembly.GetName();
-            this.Text = "SR7-420-2 " + versionText;// assemblyName.Version;
-            CreateLogFile();
 
 
 
@@ -229,10 +229,8 @@ namespace SR7_420_2
             catch (Exception ex)
             {
                 try{
-                    File.AppendAllText(logFileName,@"ERROR
-"+ex.ToString()+@"
-"+ex.Message+@"
-"+ex.StackTrace);
+                    File.AppendAllText(filePath + fileTemplate + "ERROR.txt",DateTime.Now.ToString()+ex.Message + ex.StackTrace);
+
                 }catch(Exception){}
             }
         }
@@ -799,17 +797,7 @@ Starting recording error
 
 
 
-        private void DeviceButton_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void btnSettings_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void btnSpeakers_Click(object sender, EventArgs e)
-        {
-        }
+       
 
         private void preferencesToolStfripButton_Click(object sender, EventArgs e)
         {
@@ -820,6 +808,7 @@ Starting recording error
                 using (Preferences preferences = new Preferences())
                 {
                     preferences.gpsAccess = this.gpsMain;
+                    
                     preferences.tbFileSavePath.Text = filePath;
                     preferences.tbFileNameTemplate.Text = fileTemplate;
                     preferences.nudInitialIndex.Value = index;
@@ -866,7 +855,13 @@ Starting recording error
                                 {
                                     Directory.CreateDirectory(newPath);
                                 }
-                                filePath = newPath;
+                                if (newPath != filePath)
+                                {
+                                    
+                                    filePath = newPath;
+                                    CreateLogFile();
+                                    
+                                }
                             }
                         }
                         catch (Exception) { }
@@ -879,13 +874,15 @@ Starting recording error
                                 fileTemplate = newTemplate;
                             }
                         }
-                        catch (Exception) { }
+                        catch (Exception ex) { File.AppendAllText(filePath + fileTemplate + "ERROR.txt",DateTime.Now.ToString()+ex.Message + ex.StackTrace); }
 
                         try
                         {
                             index = (int)preferences.nudInitialIndex.Value;
                         }
-                        catch (Exception) { }
+                        catch (Exception ex) {
+                            File.AppendAllText(filePath + fileTemplate + "ERROR.txt",DateTime.Now.ToString()+ex.Message + ex.StackTrace);
+                        }
 
                         addDateTime = preferences.cbAppendDateTime.Checked;
                         addIndex = preferences.cbAppendIndex.Checked;
@@ -925,10 +922,7 @@ Starting recording error
             {
                 try
                 {
-                    File.AppendAllText(logFileName, @"ERROR setting preferences
-" + ex.ToString() + @"
-" + ex.Message + @"
-" + ex.StackTrace);
+                    File.AppendAllText(filePath + fileTemplate + "ERROR.txt",DateTime.Now.ToString()+ex.Message + ex.StackTrace);
                 }
                 catch (Exception) { }
             }
@@ -960,10 +954,7 @@ SR6 Bat Recording Log File
             {
                 try
                 {
-                    File.AppendAllText(logFileName, @"ERROR selecting device
-" + ex.ToString() + @"
-" + ex.Message + @"
-" + ex.StackTrace);
+                    File.AppendAllText(filePath + fileTemplate + "ERROR.txt",DateTime.Now.ToString()+ex.Message + ex.StackTrace);
                 }
                 catch (Exception) { }
             }
@@ -975,30 +966,7 @@ SR6 Bat Recording Log File
             }
         }
 
-        private void SettingsToolStripButton_Click(object sender, EventArgs e)
-        {
-            /*
-            try
-            {
-                //asioAudioDevice1.Stop();
-                AudioSource.Enabled = false;
-                AudioSource.ShowDialog();
-                AudioSource.Start();
-                AudioSource.Enabled = true;
-                waterfall1.Focus();
-            }
-            catch (Exception ex)
-            {
-                try
-                {
-                    File.AppendAllText(logFileName, @"ERROR
-" + ex.ToString() + @"
-" + ex.Message + @"
-" + ex.StackTrace);
-                }
-                catch (Exception) { }
-            }*/
-        }
+        
 
         private enum BAT_DETECTOR { ON, OFF };
         private bool BatDetectorForced = false;
@@ -1024,10 +992,7 @@ SR6 Bat Recording Log File
             {
                 try
                 {
-                    File.AppendAllText(logFileName, @"ERROR setting speakers
-" + ex.ToString() + @"
-" + ex.Message + @"
-" + ex.StackTrace);
+                    File.AppendAllText(filePath + fileTemplate + "ERROR.txt",DateTime.Now.ToString()+ex.Message + ex.StackTrace);
                 }
                 catch (Exception) { }
                 finally
@@ -1049,7 +1014,7 @@ SR6 Bat Recording Log File
                     helpForm.ShowDialog();
                 }
             }
-            catch (Exception) { }
+            catch (Exception ex) { File.AppendAllText(filePath + fileTemplate + "ERROR.txt",DateTime.Now.ToString()+ex.Message + ex.StackTrace); }
             finally
             {
                 AudioSource.Enabled = true;
@@ -1063,24 +1028,24 @@ SR6 Bat Recording Log File
             try
             {
                 AudioSource.Enabled = false;
-                if (fir1.Enabled)
+                if (iir1.Enabled)
                 {
-                    fir1.OutputPin.Disconnect();
+                    iir1.OutputPin.Disconnect();
                     multiply1.OutputPin.Disconnect();
-                    fir1.Enabled = false;
+                    iir1.Enabled = false;
                     multiply1.OutputPin.Connect(realToAudio1.InputPins[0]);
                     ToggleFilterToolStripButton.BackColor = Color.Pink;
                 }
                 else
                 {
                     multiply1.OutputPin.Disconnect();
-                    multiply1.OutputPin.Connect(fir1.InputPin);
-                    fir1.OutputPin.Connect(realToAudio1.InputPins[0]);
-                    fir1.Enabled = true;
+                    multiply1.OutputPin.Connect(iir1.InputPin);
+                    iir1.OutputPin.Connect(realToAudio1.InputPins[0]);
+                    iir1.Enabled = true;
                     ToggleFilterToolStripButton.BackColor = Color.LimeGreen;
                 }
             }
-            catch (Exception) { }
+            catch (Exception ex) { File.AppendAllText(filePath + fileTemplate + "ERROR.txt",DateTime.Now.ToString()+ex.Message + ex.StackTrace); }
             finally
             {
                 SetFilterLabel();
@@ -1091,7 +1056,7 @@ SR6 Bat Recording Log File
 
         private void SetFilterLabel()
         {
-            if (fir1.Enabled)
+            if (iir1.Enabled)
             {
                 lblFilterState.Text = "FIR Filter Enabled";
             }

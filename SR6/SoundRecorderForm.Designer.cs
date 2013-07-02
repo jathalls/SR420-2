@@ -186,7 +186,7 @@
             OpenWire.Proxy.SinkPin sinkPin9 = new OpenWire.Proxy.SinkPin();
             OpenWire.Proxy.SinkPin sinkPin10 = new OpenWire.Proxy.SinkPin();
             OpenWire.Proxy.SourcePin sourcePin15 = new OpenWire.Proxy.SourcePin();
-            Mitov.SignalLab.Reals reals1 = new Mitov.SignalLab.Reals();
+            Mitov.SignalLab.DualReals dualReals1 = new Mitov.SignalLab.DualReals();
             Mitov.SignalLab.Threading threading3 = new Mitov.SignalLab.Threading();
             Mitov.SignalLab.ThreadingQueue threadingQueue3 = new Mitov.SignalLab.ThreadingQueue();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -215,7 +215,7 @@
             this.fourier1 = new Mitov.SignalLab.Fourier(this.components);
             this.audioOut1 = new Mitov.AudioLab.AudioOut(this.components);
             this.AudioSource = new Mitov.AudioLab.AudioIn(this.components);
-            this.fir1 = new Mitov.SignalLab.Fir(this.components);
+            this.iir1 = new Mitov.SignalLab.Iir(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.waterfall1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -228,7 +228,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.fourier1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.audioOut1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AudioSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fir1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iir1)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -623,14 +623,8 @@
             // 
             // SettingsToolStripButton
             // 
-            this.SettingsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.SettingsToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("SettingsToolStripButton.Image")));
-            this.SettingsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SettingsToolStripButton.Name = "SettingsToolStripButton";
-            this.SettingsToolStripButton.Size = new System.Drawing.Size(53, 22);
-            this.SettingsToolStripButton.Text = "Settings";
-            this.SettingsToolStripButton.Visible = false;
-            this.SettingsToolStripButton.Click += new System.EventHandler(this.SettingsToolStripButton_Click);
+            this.SettingsToolStripButton.Size = new System.Drawing.Size(23, 22);
             // 
             // SpeakersToolStripButton
             // 
@@ -848,21 +842,23 @@
             this.AudioSource.OutputPin = sourcePin14;
             this.AudioSource.PumpPriority = 100;
             // 
-            // fir1
+            // iir1
             // 
-            this.fir1.Enabled = false;
             sinkPin9.ConnectionData = ((OpenWire.PinConnections)(resources.GetObject("sinkPin9.ConnectionData")));
-            this.fir1.EnablePin = sinkPin9;
+            this.iir1.EnablePin = sinkPin9;
             sinkPin10.ConnectionData = ((OpenWire.PinConnections)(resources.GetObject("sinkPin10.ConnectionData")));
-            this.fir1.InputPin = sinkPin10;
-            this.fir1.InternalData = ((Vcl.VclBinaryData)(resources.GetObject("fir1.InternalData")));
+            this.iir1.InputPin = sinkPin10;
+            this.iir1.InternalData = ((Vcl.VclBinaryData)(resources.GetObject("iir1.InternalData")));
             sourcePin15.ConnectionData = ((OpenWire.PinConnections)(resources.GetObject("sourcePin15.ConnectionData")));
-            this.fir1.OutputPin = sourcePin15;
-            reals1.InternalData = ((Vcl.VclBinaryData)(resources.GetObject("reals1.InternalData")));
-            this.fir1.Taps = reals1;
+            this.iir1.OutputPin = sourcePin15;
+            dualReals1.Count = 7;
+            dualReals1.InternalData = ((Vcl.VclBinaryData)(resources.GetObject("dualReals1.InternalData")));
+            this.iir1.Taps = dualReals1;
+            threading3.Enabled = true;
+            threading3.InternalData = ((Vcl.VclBinaryData)(resources.GetObject("threading3.InternalData")));
             threadingQueue3.Size = ((uint)(15u));
             threading3.Queue = threadingQueue3;
-            this.fir1.Threading = threading3;
+            this.iir1.Threading = threading3;
             // 
             // SoundRecorderForm
             // 
@@ -891,7 +887,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.fourier1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.audioOut1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AudioSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fir1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iir1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -920,11 +916,11 @@
         private System.Windows.Forms.ToolStripButton SpeakersToolStripButton;
         private System.Windows.Forms.ToolStripButton HelpToolStripButton;
         private System.Windows.Forms.ToolStripButton ToggleFilterToolStripButton;
-        private Mitov.SignalLab.Fir fir1;
         private System.Windows.Forms.ToolStripButton BatDetectorTSButton;
         private System.Windows.Forms.Label lblDeviceName;
         private System.Windows.Forms.Label lblFilterState;
         private System.Windows.Forms.Label lblBDState;
+        private Mitov.SignalLab.Iir iir1;
     }
 }
 
