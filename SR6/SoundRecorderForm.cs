@@ -138,9 +138,11 @@ namespace SR7_420_2
                 SetDeviceLabel();
 
                 Assembly assembly = Assembly.GetExecutingAssembly();
-
-                AssemblyName assemblyName = assembly.GetName();
-                this.Text = assemblyName.FullName;
+                
+                //AssemblyName assemblyName = assembly.GetName();
+                this.Text = assembly.FullName;
+                var parts = this.Text.Split(",".ToCharArray());
+                this.Text = parts[0] + ", " + parts[1];
                 //this.Text = "SR7-420-2 " + versionText;// assemblyName.Version;
                 CreateLogFile();
             }
