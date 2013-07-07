@@ -145,6 +145,10 @@ namespace SR7_420_2
                 this.Text = parts[0] + ", " + parts[1];
                 //this.Text = "SR7-420-2 " + versionText;// assemblyName.Version;
                 CreateLogFile();
+
+                if ( gpsMain != null ) {
+                    gpsMain.GetAveragePosition += gpsMain_GetAveragePosition;
+                }
             }
             catch (Exception ex)
             {
@@ -157,6 +161,17 @@ namespace SR7_420_2
            
         }
 
+        private void gpsMain_GetAveragePosition(object sender, EventArgs e)
+        {
+            PositionEventArgs pe = e as PositionEventArgs;
+            GPSPositionLabel.Text = e.ToString( );
+            if ( gpsRestart ) {
+                File.AppendAllText(logFileName, "GPS Position=" + e.ToString( ) );
+                gpsRestart = false;
+            }
+        } 
+        
+        
         private void SetDeviceLabel()
         {
             lblDeviceName.Text = AudioSource.Device.DeviceName;
@@ -632,6 +647,7 @@ Timer timeout error
         }
 
         DateTime recordingStartedAt = DateTime.Now;
+        bool gpsRestart = false;
 
         /// <summary>
         /// Toggles the recording state, making suitable entries inthe
@@ -662,7 +678,10 @@ Timer timeout error
                     {
                         File.AppendAllText(logFileName, " "+gpsMain.getPosition() + "\n");
                         GPSPositionLabel.Text = gpsMain.getPosition();
-
+                        if(gpsRestart){
+                            
+                            gpsMain.StartGPS();
+                        }
                     }
                     else
                     {
@@ -701,6 +720,9 @@ Timer timeout error
                         if (gpsMain.isRunning)
                         {
                             File.AppendAllText(logFileName, " "+gpsMain.getPosition() + "\n");
+                            File.AppendAllText( logFileName, "Average Position=" + gpsMain.lastCompleteAveragePosition );
+                            gpsMain.StopGPS();
+                            gpsRestart=true;
                         }
                         recordingStartedAt = DateTime.Now;
                         File.AppendAllText(logFileName, @"
@@ -910,6 +932,7 @@ Starting recording error
                         if (gpsMain.isRunning)
                         {
                             GPSPositionLabel.Text = gpsMain.getPosition();
+                            
                         }
                         else
                         {

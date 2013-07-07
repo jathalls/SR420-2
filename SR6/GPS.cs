@@ -20,6 +20,11 @@ namespace SR7_420_2
         public string longitude { get; set; }
         public int numsats { get; set; }
         private bool _isRunning;
+        public int averageOver { get; set; }
+        private int n_for_average;
+        public string lastCompleteAveragePosition { get; set; }
+        int portnum = 1;
+        int baudrate = 4800;
 
         public bool isRunning {
             get
@@ -43,6 +48,9 @@ namespace SR7_420_2
             latitude = "0";
             longitude = "0";
             numsats = 0;
+            averageOver = 1;
+            lastCompleteAveragePosition = "";
+            n_for_average = 0;
             
             
             
@@ -110,12 +118,39 @@ namespace SR7_420_2
             Debug.WriteLine("Comport closed");
         }
 
+        double sumLongitude = 0d;
+        double sumLatitude = 0d;
+        private NMEA_Position lastPosition = null;
+        double averageLongitude = 0d;
+        double averageLatitude = 0d;
+
         void gps_SuccessfulFix(NMEA_Position Position)
         {
+            lastPosition = Position;
+            if (Position != null)
+            {
+                numsats = Position.NumberOfSats;
+                sumLongitude += Position.LongitudeDecimal;
+                sumLatitude += Position.LatitudeDecimal;
+                n_for_average++;
+                if (n_for_average >= averageOver)
+                {
+                    averageLatitude = sumLatitude / averageOver;
+                    averageLongitude = sumLongitude / averageOver;
+                    sumLongitude = 0d;
+                    sumLatitude = 0d;
+                    n_for_average = 0;
+                }
+            }
+            /*
             if (!String.IsNullOrWhiteSpace(Position.LongitudeDecimal.ToString()))
             {
                 
                 longitude = Position.LongitudeDecimal.ToString();
+                if(!String.IsNullOrWhiteSpace(Position.LatitudeDecimal.ToString()))
+                sumLongitude += Position.LatitudeDecimal;
+                
+
                 //longitude = Position.toNavalLongitude;
             }
             else
@@ -132,13 +167,22 @@ namespace SR7_420_2
                 latitude = "N/A";
             }
             
-            numsats = Position.NumberOfSats;
+            numsats = Position.NumberOfSats;*/
            
             
         }
 
+        /// <summary>
+        /// if port and baudrate are not specified use the last used settings
+        /// </summary>
+        public void StartGPS( ) {
+            StartGPS( portnum, baudrate );
+        }
+
         public void StartGPS(int portNum,int baudrate)
         {
+            this.portnum = portNum; // remember these values for next time
+            this.baudrate = baudrate;
             //gps.NMEA_POS.GPGGA = tGPPGA.Text;
             if (sp == null) return;
 
@@ -176,7 +220,78 @@ namespace SR7_420_2
 
         public String getPosition()
         {
-            return ("< "+latitude+", "+longitude + " from " + numsats + " satellites >");
+            //return ("< "+latitude+", "+longitude + " from " + numsats + " satellites >");
+            if (lastPosition != null)
+            {
+                return ("<" + lastPosition.toNavalLatitude + ", " + lastPosition.toNavalLongitude + " from " + numsats + " satellites >");
+            }
+            return ("");
+        }
+
+        private readonly object GetAveragePositionEventLock = new object( );
+        private EventHandler GetAveragePositionEvent;
+        
+        /// <summary>
+        /// Event raised after the <see cref="Text" /> property value has changed.
+        /// </summary>
+        public event EventHandler GetAveragePosition {
+            add {
+                lock ( GetAveragePositionEventLock ) {
+                    GetAveragePositionEvent += value;
+                }
+            }
+            remove {
+                lock ( GetAveragePositionEventLock ) {
+                    GetAveragePositionEvent -= value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Raises the <see cref="TextChanged" /> event.
+        /// </summary>
+        /// <param name="e"><see cref="EventArgs" /> object that provides the arguments for the event.</param>
+        protected virtual void OnGetAveragePosition( PositionEventArgs e ) {
+            EventHandler handler = null;
+
+            lock ( GetAveragePositionEventLock ) {
+                handler = GetAveragePositionEvent;
+
+                if ( handler == null )
+                    return;
+            }
+
+            handler( this, e );
+        }
+    }
+
+    /// <summary>
+    /// Provides arguments for an event.
+    /// </summary>
+    [Serializable]
+    public class PositionEventArgs : EventArgs {
+        public new static readonly PositionEventArgs Empty = new PositionEventArgs("","" );
+
+        #region Public Properties
+        public String Latitude = "";
+        public String Longitude="";
+        #endregion
+
+        #region Private / Protected
+        #endregion
+
+        #region Constructors
+        /// <summary>
+        /// Constructs a new instance of the <see cref="CustomEventArgs" /> class.
+        /// </summary>
+        public PositionEventArgs(String Latitude,String Longitude ) {
+            this.Latitude = Latitude;
+            this.Longitude = Longitude;
+        }
+        #endregion
+
+        public String ToString( ) {
+            return ( Latitude + ", " + Longitude );
         }
     }
 

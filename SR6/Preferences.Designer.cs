@@ -55,6 +55,8 @@
             this.tabPreferences = new System.Windows.Forms.TabControl();
             this.tpGeneral = new System.Windows.Forms.TabPage();
             this.tpGPS = new System.Windows.Forms.TabPage();
+            this.label18 = new System.Windows.Forms.Label();
+            this.nudGPSAveraging = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.cbLogGPS = new System.Windows.Forms.CheckBox();
@@ -62,6 +64,8 @@
             this.cboCom = new System.Windows.Forms.ComboBox();
             this.tpSonagram = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.LocalOscillatorComboBox = new System.Windows.Forms.ComboBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -82,8 +86,6 @@
             this.cbxSampleRate = new System.Windows.Forms.ComboBox();
             this.cbxWordSize = new System.Windows.Forms.ComboBox();
             this.BufferSizeComboBox = new System.Windows.Forms.ComboBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.LocalOscillatorComboBox = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -100,6 +102,7 @@
             this.tabPreferences.SuspendLayout();
             this.tpGeneral.SuspendLayout();
             this.tpGPS.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudGPSAveraging)).BeginInit();
             this.tpSonagram.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudBrightness)).BeginInit();
@@ -389,6 +392,8 @@
             // 
             // tpGPS
             // 
+            this.tpGPS.Controls.Add(this.label18);
+            this.tpGPS.Controls.Add(this.nudGPSAveraging);
             this.tpGPS.Controls.Add(this.label7);
             this.tpGPS.Controls.Add(this.label6);
             this.tpGPS.Controls.Add(this.cbLogGPS);
@@ -401,6 +406,27 @@
             this.tpGPS.TabIndex = 1;
             this.tpGPS.Text = "GPS";
             this.tpGPS.UseVisualStyleBackColor = true;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(191, 150);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(47, 13);
+            this.label18.TabIndex = 6;
+            this.label18.Text = "Average";
+            // 
+            // nudGPSAveraging
+            // 
+            this.nudGPSAveraging.Location = new System.Drawing.Point(35, 144);
+            this.nudGPSAveraging.Name = "nudGPSAveraging";
+            this.nudGPSAveraging.Size = new System.Drawing.Size(120, 20);
+            this.nudGPSAveraging.TabIndex = 5;
+            this.nudGPSAveraging.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // label7
             // 
@@ -492,6 +518,30 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(540, 201);
             this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // LocalOscillatorComboBox
+            // 
+            this.LocalOscillatorComboBox.Dock = System.Windows.Forms.DockStyle.Left;
+            this.LocalOscillatorComboBox.FormattingEnabled = true;
+            this.LocalOscillatorComboBox.Items.AddRange(new object[] {
+            "Tone",
+            "Triangle",
+            "Square"});
+            this.LocalOscillatorComboBox.Location = new System.Drawing.Point(273, 178);
+            this.LocalOscillatorComboBox.Name = "LocalOscillatorComboBox";
+            this.LocalOscillatorComboBox.Size = new System.Drawing.Size(121, 21);
+            this.LocalOscillatorComboBox.TabIndex = 13;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label17.Location = new System.Drawing.Point(3, 175);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(264, 26);
+            this.label17.TabIndex = 12;
+            this.label17.Text = "Local Oscillator";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label16
             // 
@@ -792,30 +842,6 @@
             this.BufferSizeComboBox.Size = new System.Drawing.Size(121, 21);
             this.BufferSizeComboBox.TabIndex = 6;
             // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label17.Location = new System.Drawing.Point(3, 175);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(264, 26);
-            this.label17.TabIndex = 12;
-            this.label17.Text = "Local Oscillator";
-            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // LocalOscillatorComboBox
-            // 
-            this.LocalOscillatorComboBox.Dock = System.Windows.Forms.DockStyle.Left;
-            this.LocalOscillatorComboBox.FormattingEnabled = true;
-            this.LocalOscillatorComboBox.Items.AddRange(new object[] {
-            "Tone",
-            "Triangle",
-            "Square"});
-            this.LocalOscillatorComboBox.Location = new System.Drawing.Point(273, 178);
-            this.LocalOscillatorComboBox.Name = "LocalOscillatorComboBox";
-            this.LocalOscillatorComboBox.Size = new System.Drawing.Size(121, 21);
-            this.LocalOscillatorComboBox.TabIndex = 13;
-            // 
             // Preferences
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -852,6 +878,7 @@
             this.tpGeneral.ResumeLayout(false);
             this.tpGPS.ResumeLayout(false);
             this.tpGPS.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudGPSAveraging)).EndInit();
             this.tpSonagram.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
@@ -924,5 +951,7 @@
         public System.Windows.Forms.NumericUpDown FourierOrderNumericUpDown;
         public System.Windows.Forms.ComboBox LocalOscillatorComboBox;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.NumericUpDown nudGPSAveraging;
     }
 }

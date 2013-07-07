@@ -216,6 +216,8 @@
             this.audioOut1 = new Mitov.AudioLab.AudioOut(this.components);
             this.AudioSource = new Mitov.AudioLab.AudioIn(this.components);
             this.iir1 = new Mitov.SignalLab.Iir(this.components);
+            this.GPSPosition = new System.Windows.Forms.Label();
+            this.statusPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.waterfall1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -229,6 +231,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.audioOut1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AudioSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iir1)).BeginInit();
+            this.statusPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -242,7 +245,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 97.87234F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2.12766F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1128, 483);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1128, 530);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // waterfall1
@@ -379,10 +382,11 @@
             displayViewSize2.Size = ((uint)(100u));
             waterfallDisplayLevelView1.ViewSize = displayViewSize2;
             this.waterfall1.Levels = waterfallDisplayLevelView1;
-            this.waterfall1.Location = new System.Drawing.Point(3, 3);
+            this.waterfall1.Location = new System.Drawing.Point(0, 0);
+            this.waterfall1.Margin = new System.Windows.Forms.Padding(0);
             this.waterfall1.Name = "waterfall1";
             this.waterfall1.RefreshInterval = ((uint)(100u));
-            this.waterfall1.Size = new System.Drawing.Size(1122, 466);
+            this.waterfall1.Size = new System.Drawing.Size(1128, 518);
             this.waterfall1.TabIndex = 0;
             this.waterfall1.Text = "waterfall1";
             displayViewBackground3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -860,11 +864,32 @@
             threading3.Queue = threadingQueue3;
             this.iir1.Threading = threading3;
             // 
+            // GPSPosition
+            // 
+            this.GPSPosition.AutoSize = true;
+            this.GPSPosition.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.GPSPosition.Location = new System.Drawing.Point(0, 15);
+            this.GPSPosition.MinimumSize = new System.Drawing.Size(0, 15);
+            this.GPSPosition.Name = "GPSPosition";
+            this.GPSPosition.Size = new System.Drawing.Size(50, 15);
+            this.GPSPosition.TabIndex = 1;
+            this.GPSPosition.Text = "Position:-";
+            // 
+            // statusPanel
+            // 
+            this.statusPanel.Controls.Add(this.GPSPosition);
+            this.statusPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.statusPanel.Location = new System.Drawing.Point(0, 620);
+            this.statusPanel.Name = "statusPanel";
+            this.statusPanel.Size = new System.Drawing.Size(1128, 30);
+            this.statusPanel.TabIndex = 1;
+            // 
             // SoundRecorderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1128, 603);
+            this.ClientSize = new System.Drawing.Size(1128, 650);
+            this.Controls.Add(this.statusPanel);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.panel1);
             this.KeyPreview = true;
@@ -888,6 +913,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.audioOut1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AudioSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iir1)).EndInit();
+            this.statusPanel.ResumeLayout(false);
+            this.statusPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -921,6 +948,8 @@
         private System.Windows.Forms.Label lblFilterState;
         private System.Windows.Forms.Label lblBDState;
         private Mitov.SignalLab.Iir iir1;
+        private System.Windows.Forms.Label GPSPosition;
+        private System.Windows.Forms.Panel statusPanel;
     }
 }
 
