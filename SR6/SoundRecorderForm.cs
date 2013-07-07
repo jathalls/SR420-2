@@ -164,7 +164,7 @@ namespace SR7_420_2
         private void gpsMain_GetAveragePosition(object sender, EventArgs e)
         {
             PositionEventArgs pe = e as PositionEventArgs;
-            GPSPositionLabel.Text = e.ToString( );
+            GPSPosition.Text = e.ToString( );
             if ( gpsRestart ) {
                 File.AppendAllText(logFileName, "GPS Position=" + e.ToString( ) );
                 gpsRestart = false;

@@ -132,6 +132,8 @@ namespace SR7_420_2
                 numsats = Position.NumberOfSats;
                 sumLongitude += Position.LongitudeDecimal;
                 sumLatitude += Position.LatitudeDecimal;
+                latitude = Position.toNavalLatitude;
+                longitude = Position.toNavalLongitude;
                 n_for_average++;
                 if (n_for_average >= averageOver)
                 {
@@ -140,6 +142,8 @@ namespace SR7_420_2
                     sumLongitude = 0d;
                     sumLatitude = 0d;
                     n_for_average = 0;
+                    
+                    OnGetAveragePosition( new PositionEventArgs( ToNaval(averageLatitude), ToNaval(averageLongitude) ) );
                 }
             }
             /*
@@ -170,6 +174,20 @@ namespace SR7_420_2
             numsats = Position.NumberOfSats;*/
            
             
+        }
+
+        public string ToNaval( double degrees ) {
+            int iDegrees;
+            int iMinutes;
+            double seconds;
+            double minutes;
+
+            iDegrees = (int)Math.Floor( degrees );
+            minutes = (degrees - iDegrees)*60;
+            iMinutes = (int)Math.Floor( minutes );
+            seconds = minutes - iMinutes;
+
+            return ( iDegrees + "°" + iMinutes + @"'" + seconds + "\"" );
         }
 
         /// <summary>
