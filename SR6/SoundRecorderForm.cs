@@ -164,9 +164,10 @@ namespace SR7_420_2
         private void gpsMain_GetAveragePosition(object sender, EventArgs e)
         {
             PositionEventArgs pe = e as PositionEventArgs;
-            GPSPosition.Text = e.ToString( );
+            GPSPosition.Text = "<" + pe.Latitude + "><" + pe.Longitude + ">";
+            GPSPositionLabel.Text = gpsMain.getPosition();
             if ( gpsRestart ) {
-                File.AppendAllText(logFileName, "GPS Position=" + e.ToString( ) );
+                File.AppendAllText(logFileName, "GPS Position=<" +pe.Latitude+", "+pe.Longitude+">" );
                 gpsRestart = false;
             }
         } 
@@ -673,15 +674,17 @@ Timer timeout error
                     textBox1.Text = "";
                     FileStatusLabel.Text = "Hit Space to Start Recording";
                     File.AppendAllText(logFileName, @" to " + DateTime.Now.ToLongTimeString() + @" for "+(DateTime.Now-recordingStartedAt).ToString()+@"
-");
+"); 
+                    if (gpsRestart)
+                    {
+
+                        gpsMain.StartGPS();
+                    }
                     if (gpsMain.isRunning)
                     {
                         File.AppendAllText(logFileName, " "+gpsMain.getPosition() + "\n");
                         GPSPositionLabel.Text = gpsMain.getPosition();
-                        if(gpsRestart){
-                            
-                            gpsMain.StartGPS();
-                        }
+                        
                     }
                     else
                     {
