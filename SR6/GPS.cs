@@ -205,11 +205,11 @@ eg3. $GPGGA,hhmmss.ss,llll.ll,a,yyyyy.yy,a,x,xx,x.x,x.x,M,x.x,M,x.x,xxxx*hh
             if (Position != null)
             {
                 numsats = Position.NumberOfSats;
-                
-                latitude = Position.toNavalLatitude;
-                longitude = Position.toNavalLongitude;
-                sumLongitude += ToDecimal(longitude);
-                sumLatitude += ToDecimal(latitude);
+
+                latitude = ToNaval( Position.Latitude, 2 );
+                longitude = ToNaval( Position.Longitude, 3 );
+                sumLongitude += ToDecimal(Position.Longitude,3);
+                sumLatitude += ToDecimal(Position.Latitude,2);
                 n_for_average++;
                 if (n_for_average >= averageOver)
                 {
@@ -219,40 +219,21 @@ eg3. $GPGGA,hhmmss.ss,llll.ll,a,yyyyy.yy,a,x,xx,x.x,x.x,M,x.x,M,x.x,xxxx*hh
                     sumLatitude = 0d;
                     n_for_average = 0;
                     
-                    OnGetAveragePosition( new PositionEventArgs( ToNaval(averageLatitude), ToNaval(averageLongitude) ) );
+                    OnGetAveragePosition( new PositionEventArgs( DecimalToNaval(averageLatitude), DecimalToNaval(averageLongitude) ) );
                 }
             }
-            /*
-            if (!String.IsNullOrWhiteSpace(Position.LongitudeDecimal.ToString()))
-            {
-                
-                longitude = Position.LongitudeDecimal.ToString();
-                if(!String.IsNullOrWhiteSpace(Position.LatitudeDecimal.ToString()))
-                sumLongitude += Position.LatitudeDecimal;
-                
-
-                //longitude = Position.toNavalLongitude;
-            }
-            else
-            {
-                longitude = "N/A";
-            }
-            if (!String.IsNullOrWhiteSpace(Position.LatitudeDecimal.ToString()))
-            {
-                //latitude = Position.LatitudeDecimal.ToString();
-                latitude = Position.LatitudeDecimal.ToString();
-            }
-            else
-            {
-                latitude = "N/A";
-            }
             
-            numsats = Position.NumberOfSats;*/
            
             
         }
 
-        public string ToNaval( double degrees ) {
+        /// <summary>
+        /// Converts a decimal angle 53.245 to a string
+        /// with degrees, minutes, seconds
+        /// </summary>
+        /// <param name="degrees"></param>
+        /// <returns></returns>
+        public string DecimalToNaval( double degrees ) {
             int iDegrees;
             int iMinutes;
             double seconds;
@@ -262,32 +243,55 @@ eg3. $GPGGA,hhmmss.ss,llll.ll,a,yyyyy.yy,a,x,xx,x.x,x.x,M,x.x,M,x.x,xxxx*hh
             minutes = (degrees - iDegrees)*60;
             iMinutes = (int)Math.Floor( minutes );
             seconds = (minutes - iMinutes)*60;
-
-            return ( iDegrees + "°" + iMinutes + @"'" + seconds + "\""+"("+degrees+")" );
+            return ( string.Format( "{0}°{1}\'{2:F2}", iDegrees, iMinutes, seconds ) );
+            
         }
 
-        public double ToDecimal(string NavalPosition)
+        /// <summary>
+        /// Converts an NMEA formatted angle string to degree, minutes, seconds string
+        /// </summary>
+        /// <param name="NavalPosition"></param>
+        /// <returns></returns>
+        public String ToNaval(string NMEAAngleString,int degreeFieldSize)
         {
-            var degreesplit = NavalPosition.Split("°".ToCharArray());
-            double degrees = 0d;
-            double.TryParse(degreesplit[0], out degrees);
-            var minutesplit = degreesplit[1].Split(@"'".ToCharArray());
-            double minutes = 0d;
-            double.TryParse(minutesplit[0], out minutes);
-            double seconds = 0d;
-            while (!String.IsNullOrWhiteSpace(minutesplit[1]) && !Char.IsDigit(minutesplit[1][0]))
-            {
-                minutesplit[1] = minutesplit[1].Substring(1);
-            }
-            double.TryParse(minutesplit[1], out seconds);
-            minutes += seconds / 60.0;
-            degrees += minutes / 60.0;
-            
+            // ddmm.ffff
 
-            return (degrees);
+            string strDegrees = NMEAAngleString.Substring( 0, degreeFieldSize );
+            string strMinutes = NMEAAngleString.Substring( degreeFieldSize,2 );
+            string strSeconds = NMEAAngleString.Substring( degreeFieldSize + 2 );
+            int degrees = 0;
+            int.TryParse( strDegrees, out degrees );
+            int minutes = 0;
+            int.TryParse( strMinutes, out minutes );
+            double seconds = 0.0d;
+            double.TryParse( strSeconds, out seconds );
+            seconds = seconds * 60;
+            return(string.Format("{0}°{1}\'{2:F2}",degrees,minutes,seconds));
 
 
 
+
+        }
+
+        /// <summary>
+        /// /// Converts the NMEA format string for a latitude or longitude
+        /// into a decimal value of degrees.  NMEA latitude has a
+        /// 2 digit degree field, longitude has a 3digit degree field
+        /// This function handles either but must be told the
+        /// size of the degree field
+        /// </summary>
+        /// <param name="NMEAAngleString"></param>
+        /// <param name="degreeFieldSize"></param>
+        /// <returns></returns>
+        public double ToDecimal( string NMEAAngleString, int degreeFieldSize ) {
+            double decimalAngle = 0.0d;
+            double minutes = 0.0d;
+            double.TryParse( NMEAAngleString.Substring( degreeFieldSize ), out minutes );
+            int degrees = 0;
+            int.TryParse(NMEAAngleString.Substring(0,degreeFieldSize),out degrees);
+            decimalAngle=(double)degrees+(minutes/60.0d);
+
+            return ( decimalAngle );
         }
 
         /// <summary>
