@@ -24,7 +24,7 @@ namespace SR7_420_2
         public int averageOver { get; set; }
         private int n_for_average;
         public string lastCompleteAveragePosition { get; set; }
-        int portnum = 1;
+        int portnum = 7;
         int baudrate = 4800;
 
         public bool isRunning {
@@ -121,10 +121,11 @@ namespace SR7_420_2
 
         double sumLongitude = 0d;
         double sumLatitude = 0d;
+        double sumNumsats = 0d;
         private NMEA_Position lastPosition = null;
         double averageLongitude = 0d;
         double averageLatitude = 0d;
-
+        double averageNumsats = 0d;
 
         /// <summary>
         /// 
@@ -210,16 +211,19 @@ eg3. $GPGGA,hhmmss.ss,llll.ll,a,yyyyy.yy,a,x,xx,x.x,x.x,M,x.x,M,x.x,xxxx*hh
                 longitude = ToNaval( Position.Longitude, 3 );
                 sumLongitude += ToDecimal(Position.Longitude,3);
                 sumLatitude += ToDecimal(Position.Latitude,2);
+                sumNumsats += Position.NumberOfSats;
                 n_for_average++;
                 if (n_for_average >= averageOver)
                 {
                     averageLatitude = sumLatitude / averageOver;
                     averageLongitude = sumLongitude / averageOver;
+                    averageNumsats = sumNumsats / averageOver;
                     sumLongitude = 0d;
                     sumLatitude = 0d;
+                    sumNumsats = 0d;
                     n_for_average = 0;
                     
-                    OnGetAveragePosition( new PositionEventArgs( DecimalToNaval(averageLatitude), DecimalToNaval(averageLongitude) ) );
+                    OnGetAveragePosition( new PositionEventArgs( DecimalToNaval(averageLatitude), DecimalToNaval(averageLongitude),averageNumsats ) );
                 }
             }
             
@@ -243,7 +247,7 @@ eg3. $GPGGA,hhmmss.ss,llll.ll,a,yyyyy.yy,a,x,xx,x.x,x.x,M,x.x,M,x.x,xxxx*hh
             minutes = (degrees - iDegrees)*60;
             iMinutes = (int)Math.Floor( minutes );
             seconds = (minutes - iMinutes)*60;
-            return ( string.Format( "{0}°{1}\'{2:F2}", iDegrees, iMinutes, seconds ) );
+            return ( string.Format( "{0}°{1}\'{2:F2}\"", iDegrees, iMinutes, seconds ) );
             
         }
 
@@ -266,7 +270,7 @@ eg3. $GPGGA,hhmmss.ss,llll.ll,a,yyyyy.yy,a,x,xx,x.x,x.x,M,x.x,M,x.x,xxxx*hh
             double seconds = 0.0d;
             double.TryParse( strSeconds, out seconds );
             seconds = seconds * 60;
-            return(string.Format("{0}°{1}\'{2:F2}",degrees,minutes,seconds));
+            return(string.Format("{0}°{1}\'{2:F2}\"",degrees,minutes,seconds));
 
 
 
@@ -346,7 +350,8 @@ eg3. $GPGGA,hhmmss.ss,llll.ll,a,yyyyy.yy,a,x,xx,x.x,x.x,M,x.x,M,x.x,xxxx*hh
             if (lastPosition != null)
             {
                // return ("<" + lastPosition.toNavalLatitude + ", " + lastPosition.toNavalLongitude + " from " + numsats + " satellites >");
-                string result = "raw=" + lastPosition.Latitude + "\n   decimal=" + lastPosition.LatitudeDecimal + "d\n    Naval=" + lastPosition.toNavalLatitude + "\n     string=" + lastPosition.ToString();
+                //string result = "raw=" + lastPosition.Latitude + "\n   decimal=" + lastPosition.LatitudeDecimal + "d\n    Naval=" + lastPosition.toNavalLatitude + "\n     string=" + lastPosition.ToString();
+                string result = "< "+ToNaval(lastPosition.Latitude, 2) + ", " + ToNaval(lastPosition.Longitude, 3) + " from " + numsats + " satellites >";
                 return (result);
             }
             return ("");
@@ -394,11 +399,12 @@ eg3. $GPGGA,hhmmss.ss,llll.ll,a,yyyyy.yy,a,x,xx,x.x,x.x,M,x.x,M,x.x,xxxx*hh
     /// </summary>
     [Serializable]
     public class PositionEventArgs : EventArgs {
-        public new static readonly PositionEventArgs Empty = new PositionEventArgs("","" );
+        public new static readonly PositionEventArgs Empty = new PositionEventArgs("","",0.0d );
 
         #region Public Properties
         public String Latitude = "";
         public String Longitude="";
+        public double NumberOfSatellites = 0;
         #endregion
 
         #region Private / Protected
@@ -408,9 +414,10 @@ eg3. $GPGGA,hhmmss.ss,llll.ll,a,yyyyy.yy,a,x,xx,x.x,x.x,M,x.x,M,x.x,xxxx*hh
         /// <summary>
         /// Constructs a new instance of the <see cref="CustomEventArgs" /> class.
         /// </summary>
-        public PositionEventArgs(String Latitude,String Longitude ) {
+        public PositionEventArgs(String Latitude,String Longitude,double NumberOfSatellites ) {
             this.Latitude = Latitude;
             this.Longitude = Longitude;
+            this.NumberOfSatellites = NumberOfSatellites;
         }
         #endregion
 

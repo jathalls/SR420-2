@@ -950,7 +950,8 @@ Starting recording error
             {
                 try
                 {
-                    File.AppendAllText(filePath + fileTemplate + "ERROR.txt",DateTime.Now.ToString()+ex.Message + ex.StackTrace);
+                    error(ex.Message);
+                    //File.AppendAllText(filePath + fileTemplate + "ERROR.txt",DateTime.Now.ToString()+ex.Message + ex.StackTrace);
                 }
                 catch (Exception) { }
             }
@@ -999,7 +1000,19 @@ SR6 Bat Recording Log File
         private enum BAT_DETECTOR { ON, OFF };
         private bool BatDetectorForced = false;
 
-        
+        private void error(string text)
+        {
+            try
+            {
+                if (!File.Exists(filePath + fileTemplate + "ERROR.txt"))
+                {
+                    File.Create(filePath + fileTemplate + "ERROR.txt");
+                }
+
+                File.AppendAllText(filePath + fileTemplate + "ERROR.txt", DateTime.Now.ToString()+" :- " + text);
+            }
+            catch (Exception) { }
+        }
 
         private void SpeakersToolStripButton_Click(object sender, EventArgs e)
         {
@@ -1012,23 +1025,19 @@ SR6 Bat Recording Log File
                 audioOut1.Device.ShowDeviceSelctDialog();
 
 
-                audioOut1.Enabled = true;
-                AudioSource.Enabled = true;
-                waterfall1.Focus();
+                
             }
             catch (Exception ex)
             {
-                try
-                {
-                    File.AppendAllText(filePath + fileTemplate + "ERROR.txt",DateTime.Now.ToString()+ex.Message + ex.StackTrace);
-                }
-                catch (Exception) { }
-                finally
-                {
-                    audioOut1.Enabled = true;
-                    AudioSource.Enabled = true;
-                    waterfall1.Focus();
-                }
+                error(ex.Message + ex.StackTrace);
+
+
+            }
+            finally
+            {
+                audioOut1.Enabled = true;
+                AudioSource.Enabled = true;
+                waterfall1.Focus();
             }
         }
 
