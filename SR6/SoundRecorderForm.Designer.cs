@@ -250,7 +250,7 @@
             // 
             // waterfall1
             // 
-            this.waterfall1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.waterfall1.BackColor = System.Drawing.Color.Gray;
             waterfallCursor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             waterfallCursor1.InternalData = ((Vcl.VclBinaryData)(resources.GetObject("waterfallCursor1.InternalData")));
             displayCursorMouseCursor1.Both = System.Windows.Forms.Cursors.Default;
@@ -299,14 +299,27 @@
             waterfallCursor3});
             this.waterfall1.Dock = System.Windows.Forms.DockStyle.Fill;
             displayItemHighlighting1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(0)))));
+            displayItemHighlighting1.HiglightFromLegend = false;
+            displayItemHighlighting1.HiglightFromMouse = false;
+            displayItemHighlighting1.HiglightLegendButton = false;
             displayHighlighting1.CursorLinks = displayItemHighlighting1;
             displayItemHighlighting2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(0)))));
+            displayItemHighlighting2.HiglightFromLegend = false;
+            displayItemHighlighting2.HiglightFromMouse = false;
+            displayItemHighlighting2.HiglightLegendButton = false;
             displayHighlighting1.Cursors = displayItemHighlighting2;
             displayItemHighlighting3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(0)))));
+            displayItemHighlighting3.HiglightFromLegend = false;
+            displayItemHighlighting3.HiglightFromMouse = false;
+            displayItemHighlighting3.HiglightLegendButton = false;
             displayHighlighting1.Labels = displayItemHighlighting3;
             displayItemHighlighting4.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(0)))));
+            displayItemHighlighting4.HiglightFromLegend = false;
+            displayItemHighlighting4.HiglightFromMouse = false;
+            displayItemHighlighting4.HiglightLegendButton = false;
             displayHighlighting1.Markers = displayItemHighlighting4;
             channelMouseHitPoint1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            channelMouseHitPoint1.Enabled = false;
             optionalLabel1.Font = new Vcl.VclFont(System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255))))), "Arial", 1, 0, true, 11, 0);
             optionalLabel1.Text = "";
             channelMouseHitPoint1.PointLabel = optionalLabel1;
@@ -321,6 +334,7 @@
             legendViewButtonSettings1.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             legendViewButtonSettings1.Cursor = System.Windows.Forms.Cursors.Default;
             legendViewButtonSettings1.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            legendViewButtonSettings1.Enabled = false;
             legendViewButtonSettings1.GlyphColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(0)))));
             legendViewButtonSettings1.MouseDownBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(0)))));
             legendViewButtonSettings1.MouseDownColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
@@ -363,6 +377,7 @@
             displayViewBackground2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             waterfallDisplayLevelView1.Background = displayViewBackground2;
             viewButtonSettings1.Cursor = System.Windows.Forms.Cursors.Default;
+            viewButtonSettings1.Enabled = false;
             viewButtonSettings1.MouseDownBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(0)))));
             viewButtonSettings1.MouseDownColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             viewButtonSettings1.MouseOverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(0)))));
@@ -422,6 +437,7 @@
             displayToolBar1.MouseOverButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             toolBarPosition1.InternalData = ((Vcl.VclBinaryData)(resources.GetObject("toolBarPosition1.InternalData")));
             displayToolBar1.Position = toolBarPosition1;
+            displayToolBar1.Visible = false;
             this.waterfall1.ToolBar = displayToolBar1;
             displayTrails1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             displayTrails1.Font = new Vcl.VclFont(System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255))))), "Arial", 1, 0, true, 11, 0);
@@ -433,6 +449,7 @@
             displayViewBackground4.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             waterfallXAxis1.Background = displayViewBackground4;
             viewButtonSettings2.Cursor = System.Windows.Forms.Cursors.Default;
+            viewButtonSettings2.Enabled = false;
             viewButtonSettings2.MouseDownBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(0)))));
             viewButtonSettings2.MouseDownColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             viewButtonSettings2.MouseOverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(0)))));
@@ -484,6 +501,7 @@
             axisToolBar1.MouseDownButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             axisToolBar1.MouseOverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(0)))));
             axisToolBar1.MouseOverButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            axisToolBar1.Visible = false;
             waterfallXAxis1.ToolBar = axisToolBar1;
             waterfallXAxis1.TrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             waterfallXAxis1.TrackCursor = false;
@@ -506,6 +524,7 @@
             displayViewBackground5.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             waterfallYAxis1.Background = displayViewBackground5;
             viewButtonSettings3.Cursor = System.Windows.Forms.Cursors.Default;
+            viewButtonSettings3.Enabled = false;
             viewButtonSettings3.MouseDownBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(0)))));
             viewButtonSettings3.MouseDownColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             viewButtonSettings3.MouseOverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(0)))));
@@ -557,6 +576,7 @@
             axisToolBar2.MouseDownButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             axisToolBar2.MouseOverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(0)))));
             axisToolBar2.MouseOverButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            axisToolBar2.Visible = false;
             waterfallYAxis1.ToolBar = axisToolBar2;
             waterfallYAxis1.TrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             waterfallYAxis1.TrackCursor = false;
@@ -766,7 +786,7 @@
             // realToAudio1
             // 
             audioFormat1.Bits = ((uint)(16u));
-            audioFormat1.BufferSize = ((uint)(1024u));
+            audioFormat1.BufferSize = ((uint)(512u));
             audioFormat1.Channels = ((uint)(2u));
             audioFormat1.SampleRate = ((uint)(11025u));
             this.realToAudio1.AudioFormat = audioFormat1;
@@ -777,6 +797,7 @@
             // 
             // multiply1
             // 
+            this.multiply1.BufferSize = 512;
             this.multiply1.InputPins.ConnectionData = ((OpenWire.PinConnections)(resources.GetObject("resource.ConnectionData")));
             this.multiply1.InputPins.Count = 2;
             sourcePin8.ConnectionData = ((OpenWire.PinConnections)(resources.GetObject("sourcePin8.ConnectionData")));
@@ -786,6 +807,7 @@
             // 
             this.signalGen1.Amplitude = 0.1D;
             this.signalGen1.Asymmetry = 0D;
+            this.signalGen1.BufferSize = 512;
             sinkPin5.ConnectionData = ((OpenWire.PinConnections)(resources.GetObject("sinkPin5.ConnectionData")));
             this.signalGen1.ClockPin = sinkPin5;
             sinkPin6.ConnectionData = ((OpenWire.PinConnections)(resources.GetObject("sinkPin6.ConnectionData")));
@@ -814,6 +836,7 @@
             sourcePin12.ConnectionData = ((OpenWire.PinConnections)(resources.GetObject("sourcePin12.ConnectionData")));
             this.fourier1.SpectrumOutputPin = sourcePin12;
             threading2.Enabled = true;
+            threading2.InternalData = ((Vcl.VclBinaryData)(resources.GetObject("threading2.InternalData")));
             threadingQueue2.Size = ((uint)(15u));
             threading2.Queue = threadingQueue2;
             this.fourier1.Threading = threading2;
